@@ -1,0 +1,10 @@
+export { default as SearchSvg } from "./SearchSvg";
+export { default as TrashSvg } from "./TrashSvg";
+export { default as ArrowDownSvg } from "./ArrowDownSvg";
+export { default as CheckedCircleSvg } from "./CheckedCircleSvg";
+export { default as CircleSvg } from "./CircleSvg";
+export { default as MoneySvg } from "./MoneySvg";
+export { default as StatsSvg } from "./StatsSvg";
+export { default as ClientsSvg } from "./ClientsSvg";
+export { default as CoinsSvg } from "./CoinsSvg";
+export { default as GridSvg } from "./GridSvg";
