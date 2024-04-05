@@ -8,3 +8,4 @@ export { default as StatsSvg } from "./StatsSvg";
 export { default as ClientsSvg } from "./ClientsSvg";
 export { default as CoinsSvg } from "./CoinsSvg";
 export { default as GridSvg } from "./GridSvg";
+export { default as BoxSvg } from "./BoxSvg";

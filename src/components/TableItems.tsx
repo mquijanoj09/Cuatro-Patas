@@ -23,7 +23,7 @@ export default function TableItems({ items }: Props) {
         <div
           onClick={handleSetIsSelected}
           key={item.id}
-          className="flex justify-between items-center border-b border-lighter-main py-7 hover:bg-base px-7"
+          className="flex justify-between items-center border-b border-lighter-main py-6 hover:bg-base px-6"
         >
           <div>{selected ? <CheckedCircleSvg /> : <CircleSvg />}</div>
           <Image src={item.image} alt={item.name} />
