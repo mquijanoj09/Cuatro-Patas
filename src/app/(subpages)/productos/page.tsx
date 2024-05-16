@@ -1,9 +1,23 @@
-import { PageHeader, PaginationComp } from "@/components";
-import TableItems from "@/components/TableItems";
-import { Item } from "@/types";
+import {
+  PageHeader,
+  PaginationComp,
+  TableInfo,
+  TableItems,
+} from "@/components";
+import { supabase } from "@/utils/supabase";
 import React from "react";
 
 const infoTabla = [
+  { title: "Código", width: "w-1/12" },
+  { title: "Nombre", width: "w-3/12" },
+  { title: "Imagen", width: "w-1/12" },
+  { title: "Proveedor", width: "w-3/12" },
+  { title: "Precio", width: "w-2/12" },
+  { title: "Stock", width: "w-1/12" },
+  { title: "Eliminar", width: "w-1/12" },
+];
+
+const resumenTabla = [
   { title: "Costo en stock", value: "$ 3.145.000" },
   { title: "Proveedores", value: "4" },
   { title: "Ganancia estimada", value: "$ 2.432.000" },
@@ -17,59 +31,12 @@ const infoTabla = [
   { title: "En stock", value: "9", button: true, buttonColor: "bg-green-500" },
 ];
 
-const items: Item[] = [
-  {
-    id: 1,
-    name: "Producto 1",
-    price: 100000,
-    supplier: "Proveedor 1",
-    stock: 10,
-    image: "",
-  },
-  {
-    id: 2,
-    name: "Producto 2",
-    price: 100000,
-    supplier: "Proveedor 1",
-    stock: 10,
-    image: "",
-  },
-  {
-    id: 3,
-    name: "Producto 3",
-    price: 100000,
-    supplier: "Proveedor 1",
-    stock: 10,
-    image: "",
-  },
-  {
-    id: 4,
-    name: "Producto 4",
-    price: 100000,
-    supplier: "Proveedor 1",
-    stock: 10,
-    image: "",
-  },
-  {
-    id: 5,
-    name: "Producto 5",
-    price: 100000,
-    supplier: "Proveedor 1",
-    stock: 10,
-    image: "",
-  },
-  {
-    id: 6,
-    name: "Producto 6",
-    price: 100000,
-    supplier: "Proveedor 1",
-    stock: 10,
-    image: "",
-  },
-];
-
-export default function Productos() {
-  const numProducts = items.length;
+export const dynamic = "force-dynamic";
+export default async function Productos() {
+  const { data: products } = await supabase.from("productos").select("*");
+  const productsPerPage = products ? products.slice(0, 5) : [];
+  if (!products) return null;
+  const numProducts = products.length;
 
   return (
     <PageHeader
@@ -78,9 +45,9 @@ export default function Productos() {
       bottonText="Producto"
       placeholderText="Artículo o código"
     >
-      <div className="bg-white bg-opacity-50 w-full mt-5 p-6 flex gap-6 rounded-xl flex-col">
-        <ul className="flex w-full xl:gap-20 md:gap-12 gap-7 items-center">
-          {infoTabla.map((item) => (
+      <div className="bg-white bg-opacity-50 w-full mt-5 p-6 flex rounded-xl flex-col">
+        <ul className="flex w-full justify-between mb-5 px-5">
+          {resumenTabla.map((item) => (
             <li key={item.title} className="flex flex-col items-center">
               <h5>{item.value}</h5>
               <div className="flex gap-2">
@@ -94,7 +61,8 @@ export default function Productos() {
             </li>
           ))}
         </ul>
-        <TableItems items={items} />
+        <TableInfo infoTabla={infoTabla} />
+        <TableItems items={productsPerPage} />
       </div>
       <PaginationComp />
     </PageHeader>

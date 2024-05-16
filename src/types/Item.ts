@@ -1,8 +1,9 @@
 export default interface Item {
   id: number;
-  image: string;
-  name: string;
+  nombre: string;
+  precio: number;
+  proovedor: string;
   stock: number;
-  price: number;
-  supplier: string;
+  imagen_url: string;
+  codigo: string;
 }

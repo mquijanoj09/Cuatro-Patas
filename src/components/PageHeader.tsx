@@ -4,8 +4,8 @@ import { SearchBar } from ".";
 interface Props {
   pageTitle: string;
   subHeading?: string;
-  bottonText?: string;
-  placeholderText?: string;
+  bottonText: string;
+  placeholderText: string;
   noSubHeading?: boolean;
   noSearchInput?: boolean;
   noSearchBar?: boolean;

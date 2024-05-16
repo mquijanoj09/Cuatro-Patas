@@ -5,3 +5,6 @@ export { default as Button } from "./Button";
 export { default as PageHeader } from "./PageHeader";
 export { default as ButtonPlus } from "./ButtonPlus";
 export { default as PaginationComp } from "./PaginationComp";
+export { default as Create } from "./Create";
+export { default as TableItems } from "./TableItems";
+export { default as TableInfo } from "./TableInfo";
