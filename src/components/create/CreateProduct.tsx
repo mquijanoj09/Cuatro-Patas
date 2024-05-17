@@ -1,13 +1,12 @@
 "use client";
-import { supabase } from "@/utils/supabase";
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import Input from "./Input";
-import Button from "./Button";
+import Input from "../Input";
+import Button from "../Button";
 import { XmarkSvg } from "@/icons";
-import { createProduct } from "./server/Product";
+import { createProduct } from "../server/Product";
 
 const schema = yup.object({
   name: yup.string().required("El nombre es requerido"),
@@ -28,13 +27,11 @@ interface Props {
   title: string;
 }
 
-export default function Create({ title }: Props) {
+export default function CreateProduct({ title }: Props) {
   const {
     register,
     handleSubmit,
     reset,
-    watch,
-    resetField,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -109,9 +106,9 @@ export default function Create({ title }: Props) {
         register={register}
         error={errors.codigo}
       />
-      <a href="/productos" className="flex items-center justify-center">
+      <div className="flex items-center justify-center">
         <Button type="submit">Crear</Button>
-      </a>
+      </div>
     </form>
   );
 }

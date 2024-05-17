@@ -13,7 +13,7 @@ const infoTabla = [
   },
   {
     title: "Fecha",
-    width: "w-2/12",
+    width: "w-1/12",
   },
   {
     title: "Proveedor",
@@ -28,7 +28,7 @@ const infoTabla = [
     width: "w-2/12",
   },
   {
-    title: "Estado",
+    title: "Estado de pago",
     width: "w-2/12",
   },
 ];

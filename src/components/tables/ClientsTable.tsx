@@ -31,7 +31,7 @@ export default function ClientsTable({ clients }: Props) {
           <div className="flex items-center justify-center w-1/12">
             {client.mascota}
           </div>
-          <div className="flex items-center justify-center w-1/12">
+          <div className="flex items-center justify-center w-2/12">
             {client.raza}
           </div>
         </div>

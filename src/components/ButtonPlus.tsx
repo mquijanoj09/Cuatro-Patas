@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import Create from "./Create";
+import CreateProduct from "./create/CreateProduct";
+import CreateClient from "./create/CreateClient";
+import CreateOrder from "./create/CreateOrder";
 
 interface Props {
   children: React.ReactNode;
@@ -41,7 +43,9 @@ export default function Button({ children, title }: Props) {
             }`}
             onClick={handleSetIsOpen}
           ></div>
-          <Create title={title} />
+          {title === "Producto" && <CreateProduct title={title} />}
+          {title === "Cliente" && <CreateClient title={title} />}
+          {title === "Pedido" && <CreateOrder title={title} />}
         </>
       )}
     </>

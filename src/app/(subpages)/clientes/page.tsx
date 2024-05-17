@@ -14,7 +14,7 @@ const infoTabla = [
   { title: "Teléfono", width: "w-2/12" },
   { title: "E-mail", width: "w-2/12" },
   { title: "Mascota", width: "w-1/12" },
-  { title: "Raza", width: "w-1/12" },
+  { title: "Raza", width: "w-2/12" },
 ];
 
 export const dynamic = "force-dynamic";
