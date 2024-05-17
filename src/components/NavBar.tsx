@@ -54,15 +54,6 @@ export default function NavBar() {
         <h5>Transacciones</h5>
       </Link>
       <Link
-        href={"/estadisticas"}
-        className={`p-4 flex flex-col text-xs items-center hover:bg-lighter-main rounded-xl w-full ${
-          activePage === "estadisticas" && "bg-lighter-main"
-        }`}
-      >
-        <StatsSvg />
-        <h5>Estadísticas</h5>
-      </Link>
-      <Link
         href={"ventas"}
         className={`p-4 flex flex-col text-xs items-center hover:bg-lighter-main rounded-xl w-full ${
           activePage === "ventas" && "bg-lighter-main"
@@ -70,6 +61,15 @@ export default function NavBar() {
       >
         <CoinsSvg />
         <h5>Ventas</h5>
+      </Link>
+      <Link
+        href={"/estadisticas"}
+        className={`p-4 flex flex-col text-xs items-center hover:bg-lighter-main rounded-xl w-full ${
+          activePage === "estadisticas" && "bg-lighter-main"
+        }`}
+      >
+        <StatsSvg />
+        <h5>Estadísticas</h5>
       </Link>
     </nav>
   );

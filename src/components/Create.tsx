@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import Input from "./Input";
 import Button from "./Button";
 import { XmarkSvg } from "@/icons";
-import { createProduct } from "./ServerComponent";
+import { createProduct } from "./server/Product";
 
 const schema = yup.object({
   name: yup.string().required("El nombre es requerido"),

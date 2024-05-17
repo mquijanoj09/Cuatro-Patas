@@ -1,8 +1,8 @@
-export default interface Item {
+export default interface Product {
   id: number;
   nombre: string;
   precio: number;
-  proovedor: string;
+  proveedor: string;
   stock: number;
   imagen_url: string;
   codigo: string;

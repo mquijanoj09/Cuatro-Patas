@@ -2,8 +2,10 @@ import {
   PageHeader,
   PaginationComp,
   TableInfo,
-  TableItems,
+  ProductsTable,
+  TableResume,
 } from "@/components";
+import { formatPrice } from "@/utils/price";
 import { supabase } from "@/utils/supabase";
 import React from "react";
 
@@ -17,52 +19,72 @@ const infoTabla = [
   { title: "Eliminar", width: "w-1/12" },
 ];
 
-const resumenTabla = [
-  { title: "Costo en stock", value: "$ 3.145.000" },
-  { title: "Proveedores", value: "4" },
-  { title: "Ganancia estimada", value: "$ 2.432.000" },
-  { title: "Sin stock", value: "1", button: true, buttonColor: "bg-red-500" },
-  {
-    title: "Stock bajo",
-    value: "4",
-    button: true,
-    buttonColor: "bg-yellow-500",
-  },
-  { title: "En stock", value: "9", button: true, buttonColor: "bg-green-500" },
-];
-
 export const dynamic = "force-dynamic";
 export default async function Productos() {
   const { data: products } = await supabase.from("productos").select("*");
   const productsPerPage = products ? products.slice(0, 5) : [];
   if (!products) return null;
   const numProducts = products.length;
+  const stockCostValue = products.reduce(
+    (acc, product) => acc + product.stock * product.precio,
+    0
+  );
+  const differentProviders = new Set(
+    products.map((product) => product.proveedor)
+  ).size;
+  const estimatedProfitValue = products.reduce(
+    (acc, product) => acc + product.precio * product.stock * 1.2,
+    0
+  );
+  const productsOutOfStock = products.filter(
+    (product) => product.stock === 0
+  ).length;
+  const productsFewStock = products.filter(
+    (product) => product.stock > 0 && product.stock <= 3
+  ).length;
+  const productsGoodStock = products.filter(
+    (product) => product.stock > 3
+  ).length;
+  const resumenTabla = [
+    { title: "Costo en stock", value: `$${formatPrice(stockCostValue)}` },
+    { title: "Proveedores", value: `${differentProviders}` },
+    {
+      title: "Ganancia estimada",
+      value: `$${formatPrice(estimatedProfitValue)}`,
+    },
+    {
+      title: "Sin stock",
+      value: `${productsOutOfStock}`,
+      button: true,
+      buttonColor: "bg-red-500",
+    },
+    {
+      title: "Stock bajo",
+      value: `${productsFewStock}`,
+      button: true,
+      buttonColor: "bg-yellow-500",
+    },
+    {
+      title: "En stock",
+      value: `${productsGoodStock}`,
+      button: true,
+      buttonColor: "bg-green-500",
+    },
+  ];
 
   return (
     <PageHeader
       pageTitle="Productos"
-      subHeading={`${numProducts} productos registrados`}
+      subHeading={`${numProducts} ${
+        numProducts === 1 ? "producto registrado" : "productos registrados"
+      }`}
       bottonText="Producto"
       placeholderText="Artículo o código"
     >
       <div className="bg-white bg-opacity-50 w-full mt-5 p-6 flex rounded-xl flex-col">
-        <ul className="flex w-full justify-between mb-5 px-5">
-          {resumenTabla.map((item) => (
-            <li key={item.title} className="flex flex-col items-center">
-              <h5>{item.value}</h5>
-              <div className="flex gap-2">
-                {item.button && (
-                  <div
-                    className={`rounded-full p-1 my-2 ${item.buttonColor}`}
-                  />
-                )}
-                <h5 className="min-w-fit">{item.title}</h5>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <TableResume resumenTabla={resumenTabla} />
         <TableInfo infoTabla={infoTabla} />
-        <TableItems items={productsPerPage} />
+        <ProductsTable products={productsPerPage} />
       </div>
       <PaginationComp />
     </PageHeader>

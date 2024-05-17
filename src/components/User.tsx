@@ -15,6 +15,11 @@ export default function User() {
     setIsProfileOpen((prevIsProfileOpen) => !prevIsProfileOpen);
   };
 
+  function handleCloseProfile() {
+    setIsProfileOpen(false);
+    setIsOpen(false);
+  }
+
   return (
     <>
       <div className="flex flex-col absolute right-0 m-12">
@@ -40,9 +45,6 @@ export default function User() {
             >
               Perfil
             </button>
-            <button className="hover:bg-lighter-main w-full bg-white border-main p-2 border rounded-xl">
-              Cerrar sesión
-            </button>
           </div>
         )}
       </div>
@@ -52,11 +54,11 @@ export default function User() {
             className={`fixed right-0 top-0 z-40 h-full w-full cursor-pointer bg-black transition-opacity duration-[400ms] ${
               isOpen ? "visible opacity-60" : "invisible opacity-0"
             }`}
-            onClick={handleSetIsProfileOpen}
+            onClick={handleCloseProfile}
           ></div>
           <div className="absolute items-center justify-center z-50 transform flex flex-col gap-5 w-1/4 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 bg-lighter-main p-8 rounded-xl drop-shadow-2xl">
             <button
-              onClick={handleSetIsProfileOpen}
+              onClick={handleCloseProfile}
               className="absolute -top-2 -right-2 p-1 rounded-full border border-white bg-lighter-main"
             >
               <XmarkSvg />
