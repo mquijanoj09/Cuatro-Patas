@@ -16,7 +16,7 @@ export default function NavBar() {
   const activePage = pathname.split("/")[1];
 
   return (
-    <nav className="bg-main w-32 h-[100dvh] flex items-center justify-between flex-col py-[3%] px-4 ">
+    <nav className="bg-main w-32 h-[100dvh] flex items-center justify-between flex-col py-[3%] px-4 fixed">
       <Link
         href={"/productos"}
         className={`p-4 flex flex-col text-xs items-center hover:bg-lighter-main rounded-xl w-full ${

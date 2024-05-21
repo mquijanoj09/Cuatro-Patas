@@ -1,16 +1,19 @@
 "use client";
 import { SearchSvg } from "@/icons";
 import { ButtonPlus } from ".";
-import Input from "./Input";
+import Input from "./ui/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { Client, Product, Supplier } from "@/types";
 
 interface Props {
   bottonText: string;
-  placeholderText: string;
+  placeholderText?: string;
   noSearchInput?: boolean;
   noSearchBar?: boolean;
+  products: Product[];
+  clients: Client[];
 }
 
 const schema = yup.object({
@@ -22,6 +25,8 @@ export default function SearchBar({
   placeholderText,
   noSearchInput,
   noSearchBar,
+  products,
+  clients,
 }: Props) {
   const {
     register,
@@ -40,7 +45,8 @@ export default function SearchBar({
     >
       <form
         onSubmit={handleSubmit((data) => {
-          if ((data.search = "")) return; // This line is not working
+          if ((data.search = "")) return;
+
           reset();
         })}
         className={`flex justify-between relative w-1/3 ${
@@ -48,7 +54,7 @@ export default function SearchBar({
         }`}
       >
         <Input
-          inputText={placeholderText}
+          inputText={placeholderText || ""}
           inputType="text"
           label="search"
           register={register}
@@ -71,7 +77,9 @@ export default function SearchBar({
           </button>
         </div>
       </form>
-      <ButtonPlus title={bottonText}>{bottonText}</ButtonPlus>
+      <ButtonPlus title={bottonText} products={products} clients={clients}>
+        {bottonText}
+      </ButtonPlus>
     </div>
   );
 }

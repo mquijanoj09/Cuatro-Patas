@@ -1,9 +1,4 @@
-import {
-  ClientsTable,
-  PageHeader,
-  PaginationComp,
-  TableInfo,
-} from "@/components";
+import { ClientsTable, PageHeader, TableInfo } from "@/components";
 import { supabase } from "@/utils/supabase";
 import React from "react";
 
@@ -32,11 +27,12 @@ export default async function Clientes() {
       bottonText="Cliente"
       placeholderText="Nombre"
     >
-      <div className="bg-white bg-opacity-50 w-full mt-5 p-6 flex rounded-xl flex-col">
-        <TableInfo infoTabla={infoTabla} />
-        <ClientsTable clients={clientsPerPage} />
+      <div className="pb-12">
+        <div className="bg-white bg-opacity-50 w-full my-5 p-6 flex rounded-xl flex-col">
+          <TableInfo infoTabla={infoTabla} />
+          <ClientsTable clients={clientsPerPage} />
+        </div>
       </div>
-      <PaginationComp />
     </PageHeader>
   );
 }

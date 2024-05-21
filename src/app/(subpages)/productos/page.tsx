@@ -1,6 +1,5 @@
 import {
   PageHeader,
-  PaginationComp,
   TableInfo,
   ProductsTable,
   TableResume,
@@ -10,12 +9,11 @@ import { supabase } from "@/utils/supabase";
 import React from "react";
 
 const infoTabla = [
-  { title: "Código", width: "w-1/12" },
+  { title: "Código", width: "w-2/12" },
   { title: "Nombre", width: "w-3/12" },
-  { title: "Imagen", width: "w-1/12" },
   { title: "Proveedor", width: "w-3/12" },
-  { title: "Precio", width: "w-2/12" },
-  { title: "Stock", width: "w-1/12" },
+  { title: "Precio", width: "w-3/12" },
+  { title: "Stock", width: "w-2/12" },
   { title: "Eliminar", width: "w-1/12" },
 ];
 
@@ -81,12 +79,13 @@ export default async function Productos() {
       bottonText="Producto"
       placeholderText="Artículo o código"
     >
-      <div className="bg-white bg-opacity-50 w-full mt-5 p-6 flex rounded-xl flex-col">
-        <TableResume resumenTabla={resumenTabla} />
-        <TableInfo infoTabla={infoTabla} />
-        <ProductsTable products={productsPerPage} />
+      <div className="pb-12">
+        <div className="bg-white bg-opacity-50 w-full mt-5 p-6 flex rounded-xl flex-col">
+          <TableResume resumenTabla={resumenTabla} />
+          <TableInfo infoTabla={infoTabla} />
+          <ProductsTable products={productsPerPage} />
+        </div>
       </div>
-      <PaginationComp />
     </PageHeader>
   );
 }

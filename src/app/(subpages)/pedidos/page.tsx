@@ -1,9 +1,4 @@
-import {
-  OrdersTable,
-  PageHeader,
-  PaginationComp,
-  TableInfo,
-} from "@/components";
+import { OrdersTable, PageHeader, TableInfo } from "@/components";
 import { supabase } from "@/utils/supabase";
 
 const infoTabla = [
@@ -48,11 +43,12 @@ export default async function page() {
       bottonText="Pedido"
       placeholderText="Producto o proveedor"
     >
-      <div className="bg-white bg-opacity-50 w-full mt-5 p-6 flex rounded-xl flex-col">
-        <TableInfo infoTabla={infoTabla} />
-        <OrdersTable orders={ordersPerPage} />
+      <div className="pb-12">
+        <div className="bg-white bg-opacity-50 w-full mt-5 p-6 flex rounded-xl flex-col">
+          <TableInfo infoTabla={infoTabla} />
+          <OrdersTable orders={ordersPerPage} />
+        </div>
       </div>
-      <PaginationComp />
     </PageHeader>
   );
 }

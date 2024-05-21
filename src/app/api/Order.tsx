@@ -1,6 +1,7 @@
 "use server";
 
 import { supabase } from "@/utils/supabase";
+import { revalidatePath } from "next/cache";
 
 export async function createOrder(formData: FormData) {
   const codigo = formData.get("code") as string;
@@ -16,4 +17,5 @@ export async function createOrder(formData: FormData) {
     console.error(error);
     return;
   }
+  revalidatePath("/pedidos");
 }

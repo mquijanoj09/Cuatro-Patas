@@ -3,13 +3,18 @@ import { useEffect, useState } from "react";
 import CreateProduct from "./create/CreateProduct";
 import CreateClient from "./create/CreateClient";
 import CreateOrder from "./create/CreateOrder";
+import CreateSell from "./create/CreateSell";
+import { Client, Product, Supplier } from "@/types";
+import { CreateTransaction } from ".";
 
 interface Props {
   children: React.ReactNode;
   title: string;
+  products: Product[];
+  clients: Client[];
 }
 
-export default function Button({ children, title }: Props) {
+export default function Button({ children, title, products, clients }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleSetIsOpen() {
@@ -27,7 +32,7 @@ export default function Button({ children, title }: Props) {
   return (
     <>
       <button
-        className="bg-main rounded-xl w-40 px-5 flex justify-between items-center hover:bg-lighter-main"
+        className="bg-main rounded-xl w-fit gap-3 px-5 flex justify-between items-center hover:bg-lighter-main"
         onClick={() => {
           handleSetIsOpen();
         }}
@@ -43,9 +48,29 @@ export default function Button({ children, title }: Props) {
             }`}
             onClick={handleSetIsOpen}
           ></div>
-          {title === "Producto" && <CreateProduct title={title} />}
-          {title === "Cliente" && <CreateClient title={title} />}
-          {title === "Pedido" && <CreateOrder title={title} />}
+          {title === "Producto" && (
+            <CreateProduct title={title} handleSetIsOpen={handleSetIsOpen} />
+          )}
+          {title === "Cliente" && (
+            <CreateClient title={title} handleSetIsOpen={handleSetIsOpen} />
+          )}
+          {title === "Pedido" && (
+            <CreateOrder title={title} handleSetIsOpen={handleSetIsOpen} />
+          )}
+          {title === "Cuenta por pagar" && (
+            <CreateTransaction
+              title={title}
+              handleSetIsOpen={handleSetIsOpen}
+            />
+          )}
+          {title === "Cuenta por cobrar" && (
+            <CreateSell
+              title={title}
+              products={products}
+              clients={clients}
+              handleSetIsOpen={handleSetIsOpen}
+            />
+          )}
         </>
       )}
     </>

@@ -3,10 +3,10 @@ import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import Input from "../Input";
-import Button from "../Button";
+import Input from "../ui/Input";
+import Button from "../ui/Button";
 import { XmarkSvg } from "@/icons";
-import { createClient } from "../server/Client";
+import { createClient } from "../../app/api/Client";
 
 const schema = yup.object({
   name: yup.string().required("El nombre es requerido"),
@@ -31,9 +31,10 @@ const schema = yup.object({
 
 interface Props {
   title: string;
+  handleSetIsOpen: () => void;
 }
 
-export default function CreateClient({ title }: Props) {
+export default function CreateClient({ title, handleSetIsOpen }: Props) {
   const {
     register,
     handleSubmit,
@@ -55,6 +56,7 @@ export default function CreateClient({ title }: Props) {
         formData.append("email", data.email);
         formData.append("pet", data.pet);
         formData.append("breed", data.breed);
+        handleSetIsOpen();
         createClient(formData);
         reset();
       })}

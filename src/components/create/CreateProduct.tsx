@@ -3,10 +3,10 @@ import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import Input from "../Input";
-import Button from "../Button";
+import Input from "../ui/Input";
+import Button from "../ui/Button";
 import { XmarkSvg } from "@/icons";
-import { createProduct } from "../server/Product";
+import { createProduct } from "../../app/api/Product";
 
 const schema = yup.object({
   name: yup.string().required("El nombre es requerido"),
@@ -19,15 +19,15 @@ const schema = yup.object({
     .string()
     .required("El stock  es requerido")
     .matches(/^[0-9]+$/, "La altura solo debe contener números"),
-  image: yup.mixed().required("La imagen es requerida"),
   codigo: yup.string().required("El código es requerido"),
 });
 
 interface Props {
   title: string;
+  handleSetIsOpen: () => void;
 }
 
-export default function CreateProduct({ title }: Props) {
+export default function CreateProduct({ title, handleSetIsOpen }: Props) {
   const {
     register,
     handleSubmit,
@@ -47,27 +47,20 @@ export default function CreateProduct({ title }: Props) {
         formData.append("supplier", data.supplier);
         formData.append("stock", data.stock);
         formData.append("codigo", data.codigo);
-        // formData.append("image", data.image[0]);
         createProduct(formData);
+        handleSetIsOpen();
         reset();
       })}
       className="absolute z-50 transform flex flex-col gap-5 w-1/3 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 bg-white p-8 rounded-xl drop-shadow-2xl"
     >
-      <button className="absolute -top-2 -right-2 p-1 rounded-full border border-main bg-white">
+      <button
+        onClick={handleSetIsOpen}
+        className="absolute -top-2 -right-2 p-1 rounded-full border border-main bg-white"
+      >
         <XmarkSvg />
       </button>
       <h2 className="text-2xl font-semibold">Crear {title}</h2>
       <div className="flex gap-5">
-        <div className="w-1/2">
-          <Input
-            inputText="Imagen"
-            inputType="file"
-            label="image"
-            register={register}
-            className="w-full h-full px-3 placeholder-gray-300 border rounded-lg focus:outline-main"
-            // error={errors.image} // This line is not working
-          />
-        </div>
         <div className="flex flex-col gap-5 flex-1">
           <Input
             inputText="Stock"

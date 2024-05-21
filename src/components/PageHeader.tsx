@@ -1,18 +1,21 @@
-import React from "react";
 import { SearchBar } from ".";
+import React from "react";
+import { Client, Product, Supplier } from "@/types";
 
 interface Props {
   pageTitle: string;
   subHeading?: string;
   bottonText: string;
-  placeholderText: string;
+  placeholderText?: string;
   noSubHeading?: boolean;
   noSearchInput?: boolean;
   noSearchBar?: boolean;
   children?: React.ReactNode;
+  products?: Product[];
+  clients?: Client[];
 }
 
-export default function PageHeader({
+export default async function PageHeader({
   pageTitle,
   subHeading,
   bottonText,
@@ -21,9 +24,11 @@ export default function PageHeader({
   noSearchInput,
   noSearchBar,
   children,
+  products,
+  clients,
 }: Props) {
   return (
-    <div className="w-full m-20">
+    <div className="w-full m-20 pl-32 pb-5">
       <div className="flex flex-col gap-2">
         <h1 className="text-4xl">{pageTitle}</h1>
         <h5 className={`text-xs h-4 ${noSubHeading && "invisible"}`}>
@@ -35,6 +40,8 @@ export default function PageHeader({
         placeholderText={placeholderText}
         noSearchInput={noSearchInput}
         noSearchBar={noSearchBar}
+        products={products || []}
+        clients={clients || []}
       />
       {children}
     </div>

@@ -4,6 +4,5 @@ export default interface Product {
   precio: number;
   proveedor: string;
   stock: number;
-  imagen_url: string;
   codigo: string;
 }

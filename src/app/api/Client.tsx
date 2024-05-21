@@ -1,6 +1,7 @@
 "use server";
 
 import { supabase } from "@/utils/supabase";
+import { revalidatePath } from "next/cache";
 
 export async function createClient(formData: FormData) {
   const numero = Number(formData.get("number"));
@@ -17,4 +18,5 @@ export async function createClient(formData: FormData) {
     console.error(error);
     return;
   }
+  revalidatePath("/clientes");
 }
