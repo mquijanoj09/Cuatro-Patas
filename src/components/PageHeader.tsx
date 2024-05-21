@@ -1,6 +1,6 @@
 import { SearchBar } from ".";
 import React from "react";
-import { Client, Product, Supplier } from "@/types";
+import { Client, Product } from "@/types";
 
 interface Props {
   pageTitle: string;

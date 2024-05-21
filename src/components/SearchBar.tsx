@@ -5,7 +5,7 @@ import Input from "./ui/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { Client, Product, Supplier } from "@/types";
+import { Client, Product } from "@/types";
 
 interface Props {
   bottonText: string;
