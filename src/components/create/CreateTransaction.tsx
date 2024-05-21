@@ -7,7 +7,6 @@ import Input from "../ui/Input";
 import Button from "../ui/Button";
 import { XmarkSvg } from "@/icons";
 import { createTransaction } from "@/app/api/Transaction";
-import { Supplier } from "@/types";
 
 const schema = yup.object({
   name: yup.string().required("El nombre es requerido"),

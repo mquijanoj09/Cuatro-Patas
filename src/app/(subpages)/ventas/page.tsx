@@ -1,5 +1,6 @@
 import { Late, NextWeek, PageHeader, Today } from "@/components";
 import { supabase } from "@/utils/supabase";
+import dayjs from "dayjs";
 
 export const dynamic = "force-dynamic";
 export default async function page() {
@@ -7,21 +8,22 @@ export default async function page() {
   const { data: clients } = await supabase.from("clientes").select("*");
   const { data: items } = await supabase.from("ventas").select("*");
   if (!items) return;
-  console.log("Sell items:", items);
-  // const today = new Date();
-  // const todayStr = today.toISOString().split("T")[0];
 
-  // const nextWeek = new Date(today);
-  // nextWeek.setDate(today.getDate() + 7);
-  // const nextWeekStr = nextWeek.toISOString().split("T")[0];
+  const lateItems = items.filter((item) =>
+    dayjs(item.fecha).isBefore(dayjs(), "day")
+  );
 
-  // const lateItems = items.filter((item) => new Date(item.fecha) < today);
-  // const todayItems = items.filter((item) => item.fecha === todayStr);
-  // const nextWeekItems = items.filter((item) => item.fecha === nextWeekStr);
+  const todayItems = items.filter((item) =>
+    dayjs().isSame(dayjs(item.fecha), "day")
+  );
 
-  // console.log("Late Items:", lateItems);
-  // console.log("Today Items:", todayItems);
-  // console.log("Next Week Items:", nextWeekItems);
+  const nextWeekItems = items.filter((item) => {
+    const itemDate = dayjs(item.fecha);
+    const today = dayjs();
+    const nextWeek = today.add(7, "day");
+
+    return itemDate.isAfter(today, "day") && itemDate.isBefore(nextWeek, "day");
+  });
 
   return (
     <PageHeader
@@ -33,9 +35,9 @@ export default async function page() {
       noSearchInput
     >
       <div className=" w-full mt-5 grid grid-cols-3 gap-5 pb-12">
-        <Late lateItems={items} />
-        <Today todayItems={items} />
-        <NextWeek nextWeekItems={items} />
+        <Late lateItems={lateItems} />
+        <Today todayItems={todayItems} />
+        <NextWeek nextWeekItems={nextWeekItems} />
       </div>
     </PageHeader>
   );

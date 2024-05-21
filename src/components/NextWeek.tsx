@@ -7,7 +7,6 @@ interface Props {
 }
 
 export default function NextWeek({ nextWeekItems }: Props) {
-  console.log(nextWeekItems);
   return (
     <div className="bg-white bg-opacity-50 p-6 rounded-xl gap-5 flex items-center justify-start flex-col overflow-y-scroll">
       <div className="flex items-center justify-center gap-2">
@@ -20,7 +19,7 @@ export default function NextWeek({ nextWeekItems }: Props) {
         </p>
       )}
       {nextWeekItems.map((nextWeekItem: MoneyItem) => (
-        <MoneyItems key={nextWeekItem.item.id} item={nextWeekItem.item} />
+        <MoneyItems key={nextWeekItem.id} item={nextWeekItem} />
       ))}
     </div>
   );

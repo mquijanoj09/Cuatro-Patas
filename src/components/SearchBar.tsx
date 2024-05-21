@@ -40,7 +40,7 @@ export default function SearchBar({
   return (
     <div
       className={`w-full bg-white flex justify-between p-4 mt-8 rounded-xl ${
-        noSearchBar && "invisible"
+        noSearchBar && "hidden"
       }`}
     >
       <form

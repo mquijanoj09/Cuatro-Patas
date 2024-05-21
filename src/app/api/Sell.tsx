@@ -19,3 +19,12 @@ export async function createSell(formData: FormData) {
   }
   revalidatePath("/ventas");
 }
+
+export async function deleteSell(id: number) {
+  const { error } = await supabase.from("ventas").delete().match({ id });
+  if (error) {
+    console.error(error);
+    return;
+  }
+  revalidatePath("/ventas");
+}

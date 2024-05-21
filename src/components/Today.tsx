@@ -19,7 +19,7 @@ export default function Today({ todayItems }: Props) {
         </p>
       )}
       {todayItems.map((todayItems: MoneyItem) => (
-        <MoneyItems key={todayItems.item.id} item={todayItems.item} />
+        <MoneyItems key={todayItems.id} item={todayItems} />
       ))}
     </div>
   );

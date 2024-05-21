@@ -19,7 +19,7 @@ export default function Late({ lateItems }: Props) {
         </p>
       )}
       {lateItems.map((lateItem: MoneyItem) => (
-        <MoneyItems key={lateItem.item.id} item={lateItem.item} />
+        <MoneyItems key={lateItem.id} item={lateItem} />
       ))}
     </div>
   );

@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CreateProduct from "./create/CreateProduct";
 import CreateClient from "./create/CreateClient";
 import CreateOrder from "./create/CreateOrder";
 import CreateSell from "./create/CreateSell";
-import { Client, Product, Supplier } from "@/types";
+import { Client, Product } from "@/types";
 import { CreateTransaction } from ".";
 
 interface Props {
@@ -20,14 +20,6 @@ export default function Button({ children, title, products, clients }: Props) {
   function handleSetIsOpen() {
     setIsOpen(!isOpen);
   }
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "scroll";
-    }
-  }, [isOpen]);
 
   return (
     <>

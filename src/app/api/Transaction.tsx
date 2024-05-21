@@ -17,3 +17,12 @@ export async function createTransaction(formData: FormData) {
   }
   revalidatePath("/transacciones");
 }
+
+export async function deleteTransaction(id: number) {
+  const { error } = await supabase.from("transacciones").delete().match({ id });
+  if (error) {
+    console.error(error);
+    return;
+  }
+  revalidatePath("/transacciones");
+}

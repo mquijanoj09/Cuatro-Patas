@@ -19,3 +19,6 @@ export { default as NextWeek } from "./NextWeek";
 export { default as SellItems } from "./MoneyItems";
 export { default as CreateTransaction } from "./create/CreateTransaction";
 export { default as CreateSell } from "./create/CreateSell";
+export { default as Stats } from "./Stats";
+export { default as Facturation } from "./Facturation";
+export { default as FacturationTable } from "./tables/FacturationTable";
