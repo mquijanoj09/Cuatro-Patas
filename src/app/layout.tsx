@@ -15,6 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href="/favicon.png"
+          type="image/<generated>"
+          sizes="<generated>"
+          className="rounded-full"
+        />
+      </head>
       <body className="bg-base flex h-[100dvh] w-screen">
         <Providers>
           <NavBar />

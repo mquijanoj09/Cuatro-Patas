@@ -2,6 +2,7 @@
 import { ArrowDownSvg, ArrowUpSvg, XmarkSvg } from "@/icons";
 import Image from "next/image";
 import React, { useState } from "react";
+import logo from "../../public/images/logo.jpeg";
 
 export default function User() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,12 @@ export default function User() {
             isOpen && "rounded-br-none"
           }`}
         >
-          <Image src={""} alt="user foto" />
+          <Image
+            src={logo}
+            alt="user foto"
+            width={40}
+            className="rounded-full"
+          />
           <div>
             <h4 className="text-sm">Maria Camila Guzmán</h4>
             <h5 className="text-xs">cuatropatasgalletas@gmail.com</h5>
@@ -63,7 +69,12 @@ export default function User() {
             >
               <XmarkSvg />
             </button>
-            <Image src={""} alt="user foto" />
+            <Image
+              src={logo}
+              alt="user foto"
+              width={80}
+              className="rounded-full"
+            />
             <div className="text-center flex flex-col gap-2">
               <h4 className="text-sm font-semibold">Maria Camila Guzmán</h4>
               <h5 className="text-xs">cuatropataspaletas@gmail.com</h5>
