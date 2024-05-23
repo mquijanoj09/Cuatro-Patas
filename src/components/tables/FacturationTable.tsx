@@ -7,11 +7,12 @@ interface Props {
 }
 
 export default function FacturationTable({ stats }: Props) {
+  console.log(stats);
   const bestMonth = stats.reduce((acc, stat) => {
-    return acc.facturacion > stat.facturacion ? acc : stat;
+    return acc.ventas > stat.ventas ? acc : stat;
   });
   const worstMonth = stats.reduce((acc, stat) => {
-    return acc.facturacion < stat.facturacion ? acc : stat;
+    return acc.ventas < stat.ventas ? acc : stat;
   });
   return (
     <div className="flex flex-col">
@@ -24,9 +25,6 @@ export default function FacturationTable({ stats }: Props) {
         >
           <div className="flex items-center justify-center w-4/12">
             {stat.mes}
-          </div>
-          <div className="flex items-center justify-center w-4/12">
-            $ {formatPrice(stat.facturacion)}
           </div>
           <div className="flex items-center justify-center w-4/12">
             $ {formatPrice(stat.ventas)}

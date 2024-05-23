@@ -7,7 +7,6 @@ import { Chart } from "react-google-charts";
 
 const infoTabla = [
   { title: "Mes", width: "w-4/12" },
-  { title: "Facturación", width: "w-4/12" },
   { title: "Ventas", width: "w-4/12" },
   { title: "Ganancias", width: "w-4/12" },
 ];
@@ -17,25 +16,21 @@ interface Props {
 }
 
 const chartOptions = {
-  title: "Mes vs Facturación",
+  title: "Mes vs Ventas",
   hAxis: {
     title: "Meses",
   },
   vAxis: {
-    title: "Facturación",
+    title: "Ventas",
   },
   colors: ["#93D4DA"],
 };
 
-const chartData = [
-  ["Mes", "Facturación"],
-  ["Enero", 1000],
-  ["Febrero", 1200],
-  ["Marzo", 1300],
-  ["Abril", 1400],
-];
-
 export default function Facturation({ stats }: Props) {
+  const chartData = [
+    ["Mes", "Ventas"],
+    ...stats.map((stat) => [stat.mes, stat.ventas]),
+  ];
   return (
     <div className="w-2/3 p-5 flex gap-12 flex-col">
       <h2 className="text-xl font-semibold">Facturación</h2>

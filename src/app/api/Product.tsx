@@ -1,5 +1,4 @@
 "use server";
-
 import { supabase } from "@/utils/supabase";
 import { revalidatePath } from "next/cache";
 
@@ -17,6 +16,7 @@ export async function createProduct(formData: FormData) {
     return;
   }
   revalidatePath("/productos");
+  revalidatePath("/estadisticas");
 }
 
 export async function deleteProduct(id: number) {
@@ -25,5 +25,6 @@ export async function deleteProduct(id: number) {
     console.error(error);
     return;
   }
+  revalidatePath("/estadisticas");
   revalidatePath("/productos");
 }
